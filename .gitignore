@@ -1,0 +1,6 @@
+.opencode/
+__pycache__/
+.DS_Store
+*.log
+.vscode/
+node_modules/
