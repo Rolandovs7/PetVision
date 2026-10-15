@@ -1,15 +1,15 @@
-# Patitas IA
+# PetVision
 
-Sistema de apoyo a la toma de decisiones que clasifica una foto como **perro** o **gato**.
+Aplicación de apoyo a la toma de decisiones que clasifica una foto como **perro** o **gato**.
 
 | | |
 |---|---|
-| **Materia** | Soporte a la toma de decisiones |
-| **Docente** | Jesús Bautista |
-| **Alumno** | Luishiño Pericena |
+| **Proyecto** | PetVision |
+| **Autor** | Rolando Velasco Soliz |
+| **Materia** | INF432 |
 | **Producto** | Aplicación web estática, modelo de visión y contenedor Docker |
 
-![Portada de Patitas IA: un perro y un gato junto al título del proyecto](docs/imagenes/portada-patitas.jpg)
+![Portada de PetVision: un perro y un gato junto al título del proyecto](docs/imagenes/portada-patitas.jpg)
 
 La persona aporta la foto. El sistema comprueba que haya una mascota, estima la clase y muestra un porcentaje de confianza. La decisión final sigue siendo de quien usa la aplicación: si la confianza es baja, el resultado se marca como poco seguro.
 
@@ -21,7 +21,7 @@ No hace falta Node.js. La página, los estilos y el modelo ya están listos. Doc
 
 El problema es binario: ante una imagen, decidir si el animal es un perro o un gato.
 
-Patitas IA no reemplaza el criterio de la persona. Ordena la evidencia en cuatro pasos:
+PetVision no reemplaza el criterio de la persona. Ordena la evidencia en cuatro pasos:
 
 1. Rechaza fotos que no muestran un perro ni un gato (personas, objetos, escenas vacías).
 2. Calcula una probabilidad con la red neuronal entrenada.
@@ -36,7 +36,7 @@ Si la confianza queda por debajo del 60 %, la interfaz avisa que el resultado es
 
 ## 2. Cómo se usa
 
-![Interfaz de Patitas IA con la foto, los botones de cámara y carga, y la tarjeta de resultado](docs/imagenes/interfaz-html.jpg)
+![Interfaz de PetVision con la foto, los botones de cámara y carga, y la tarjeta de resultado](docs/imagenes/interfaz-html.jpg)
 
 1. Abre la aplicación.
 2. Sube una imagen (JPG, PNG, WEBP o GIF, hasta 12 MB) o enciende la cámara.
@@ -50,7 +50,7 @@ La foto no se envía a un servidor. El historial guarda solo la etiqueta, la con
 
 ## 3. El modelo de inteligencia artificial
 
-El clasificador que corre en la página es una **red neuronal convolucional** llamada `patitas_classifier`. Se entrenó en el cuaderno `entrenamiento/Clasificador_de_perros_y_gatos.ipynb` y se exportó a TensorFlow.js.
+El clasificador que corre en la página es una **red neuronal convolucional** llamada `petvision_classifier`. Se entrenó en el cuaderno `entrenamiento/Clasificador_de_perros_y_gatos.ipynb` y se exportó a TensorFlow.js.
 
 ![Arquitectura del modelo: imagen 100×100, tres convoluciones, aplanar, capa densa y sigmoide](docs/imagenes/arquitectura-modelo.jpg)
 
@@ -127,7 +127,7 @@ Tailwind se carga en el navegador y lee las clases escritas en el HTML (`bg-crea
 | `web/styles.css` | Detalles propios: píxeles, foco, cámara y títulos en móvil |
 | `web/service-worker.js` | Permite instalar la app y reutilizar archivos sin conexión |
 | `web/manifest.webmanifest` | Nombre, color e icono de la aplicación instalable |
-| `web/assets/` | Ilustración, iconos y favicon |
+| `web/assets/` | Logotipo, iconos, favicons e imagen para redes |
 | `web/modelo/` | Topología y pesos del clasificador |
 | `web/cuaderno/` | Explicación navegable del entrenamiento |
 
@@ -217,3 +217,9 @@ No abras `index.html` con doble clic. La cámara, el modelo y el service worker 
 - La confianza es una estimación del modelo, no una certeza.
 - El historial permanece solo en ese navegador. Borrar los datos del sitio lo elimina.
 - El proyecto es educativo. Sirve para apoyar una clasificación sencilla, no para un diagnóstico ni para identificar una mascota concreta.
+
+---
+
+## 8. Licencia
+
+Este proyecto se distribuye bajo la [Licencia Apache 2.0](LICENSE). Copyright 2026 Rolando Velasco Soliz.

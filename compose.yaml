@@ -1,5 +1,5 @@
 services:
-  patitas-ia:
+  petvision:
     build:
       context: .
       dockerfile: docker/Dockerfile

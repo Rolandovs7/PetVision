@@ -8,7 +8,7 @@
     "model_config": {
       "class_name": "Sequential",
       "config": {
-        "name": "patitas_classifier",
+        "name": "petvision_classifier",
         "layers": [
           {
             "class_name": "InputLayer",

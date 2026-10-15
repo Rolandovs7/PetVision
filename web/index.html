@@ -3,16 +3,22 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-    <meta name="theme-color" content="#f7f5ef">
+    <meta name="theme-color" content="#FAF3E3">
     <meta name="description" content="Descubre si una foto es de un perro o un gato con este clasificador de inteligencia artificial. Usa tu cámara o sube una imagen, gratis y desde tu móvil.">
+    <meta name="author" content="Rolando Velasco Soliz">
     <meta property="og:type" content="website">
-    <meta property="og:title" content="Patitas IA — ¿Perro o gato?">
+    <meta property="og:title" content="PetVision — ¿Perro o gato?">
     <meta property="og:description" content="Una forma sencilla y divertida de descubrir si tu foto es de un perro o un gato.">
-    <meta property="og:image" content="assets/mascotas.svg">
-    <link rel="icon" type="image/svg+xml" href="assets/mascotas.svg">
-    <meta name="author" content="Luishiño Pericena">
-    <link rel="manifest" href="manifest.webmanifest">
-    <title>Patitas IA — Clasificador de perros y gatos</title>
+    <meta property="og:image" content="./assets/og-image.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="PetVision — ¿Perro o gato?">
+    <meta name="twitter:description" content="Una forma sencilla y divertida de descubrir si tu foto es de un perro o un gato.">
+    <meta name="twitter:image" content="./assets/og-image.png">
+    <link rel="icon" type="image/png" sizes="64x64" href="./assets/favicon.png">
+    <link rel="icon" type="image/png" sizes="48x48" href="./assets/favicon-48.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="./assets/apple-touch-icon.png">
+    <link rel="manifest" href="./manifest.webmanifest">
+    <title>PetVision — Clasificador de perros y gatos</title>
     <link rel="stylesheet" href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css">
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -43,14 +49,14 @@
   </head>
   <body class="bg-cream font-sans text-ink antialiased">
     <header class="sticky top-0 z-20 mx-auto flex max-w-6xl items-center justify-between gap-3 bg-cream/95 px-5 py-3 backdrop-blur sm:px-8">
-      <a href="#" class="focus-ring flex items-center gap-3 rounded-xl" aria-label="Patitas IA, inicio">
-        <img src="assets/mascotas.svg" alt="" width="52" height="44" class="pixel">
-        <span class="text-lg font-black tracking-tight sm:text-xl">patitas<span class="text-leaf">.ia</span></span>
+      <a href="#" class="focus-ring flex items-center gap-3 rounded-xl" aria-label="PetVision, inicio">
+        <img src="./assets/logo.png" alt="" width="48" height="48">
+        <span class="text-lg font-black tracking-tight sm:text-xl">Pet<span class="text-leaf">Vision</span></span>
       </a>
       <nav class="flex items-center gap-1 sm:gap-3" aria-label="Navegación principal">
         <a href="#como-funciona" class="focus-ring rounded-xl px-2 py-2 text-sm font-extrabold text-ink/70 hover:text-leaf sm:px-3">El proyecto</a>
         <button id="install-app" type="button" class="focus-ring hidden min-h-10 items-center gap-1.5 rounded-full bg-leaf px-3 py-2 text-xs font-extrabold text-white shadow-sm hover:bg-[#365f47] sm:px-4"><i class="bx bx-download text-base" aria-hidden="true"></i><span class="hidden sm:inline">Instalar app</span></button>
-        <a href="cuaderno/Clasificador_de_perros_y_gatos.html" class="focus-ring inline-flex min-h-10 items-center gap-1.5 rounded-full bg-white px-3 py-2 text-xs font-extrabold text-ink shadow-sm transition hover:text-leaf sm:px-4"><i class="bx bx-book-open text-base" aria-hidden="true"></i><span class="hidden sm:inline">Ver cuaderno</span><span class="sm:hidden">Notebook</span></a>
+        <a href="./cuaderno/Clasificador_de_perros_y_gatos.html" class="focus-ring inline-flex min-h-10 items-center gap-1.5 rounded-full bg-white px-3 py-2 text-xs font-extrabold text-ink shadow-sm transition hover:text-leaf sm:px-4"><i class="bx bx-book-open text-base" aria-hidden="true"></i><span class="hidden sm:inline">Ver cuaderno</span><span class="sm:hidden">Notebook</span></a>
       </nav>
     </header>
 
@@ -62,7 +68,7 @@
             INTELIGENCIA ARTIFICIAL, CON MUCHO CARIÑO
           </div>
           <h1 class="hero-title max-w-xl text-4xl font-black leading-[1.08] tracking-tight sm:text-5xl lg:text-6xl">¿Team <span class="text-leaf">perro</span> o team <span class="text-[#ca7957]">gato</span>?</h1>
-          <p class="mt-4 max-w-lg text-base leading-7 text-ink/70 sm:text-lg">Una foto, dos posibles protagonistas. Súbela o usa la cámara y deja que nuestra IA busque las patitas.</p>
+          <p class="mt-4 max-w-lg text-base leading-7 text-ink/70 sm:text-lg">Una foto, dos posibles protagonistas. Súbela o usa la cámara y deja que nuestra IA lo descubra.</p>
           <a href="#clasificador" class="focus-ring mt-6 inline-flex min-h-12 items-center justify-center gap-2 rounded-2xl bg-leaf px-6 py-3 font-extrabold text-white shadow-soft transition hover:-translate-y-0.5 hover:bg-[#365f47]"><i class="bx bx-scan text-xl" aria-hidden="true"></i>¡Vamos a descubrirlo!</a>
           <div class="mt-4 flex flex-wrap gap-x-4 gap-y-2 text-xs font-semibold text-ink/55">
             <span><i class="bx bx-shield-quarter mr-1 text-base text-leaf" aria-hidden="true"></i>Procesamiento local</span>
@@ -71,7 +77,7 @@
         </div>
         <div class="order-2 px-1 md:order-2">
           <div class="relative mx-auto max-w-[500px] overflow-hidden rounded-[2rem] bg-[#e9eee2] p-3 shadow-soft sm:p-5">
-            <img src="assets/mascotas.svg" alt="Perro y gato pixel art esperando a que pruebes el clasificador" width="480" height="340" fetchpriority="high" class="pixel h-auto w-full">
+            <img src="./assets/logo-hero.png" alt="Logotipo de PetVision" width="1024" height="495" fetchpriority="high" class="h-auto w-full">
           </div>
         </div>
       </section>
@@ -90,7 +96,7 @@
                 <video id="video" class="hidden h-full w-full object-fill" playsinline autoplay muted aria-label="Vista previa de la cámara"></video>
                 <img id="foto-preview" class="hidden h-full w-full object-contain" alt="Imagen seleccionada para clasificar">
                 <div id="placeholder" class="px-6 text-center">
-                  <img src="assets/mascotas.svg" alt="" width="220" height="156" class="pixel mx-auto">
+                  <img src="./assets/logo-hero.png" alt="" width="220" height="106" class="mx-auto">
                   <p class="mt-4 font-extrabold">Tu foto aparecerá aquí</p>
                   <p class="mt-1 text-sm text-ink/55">JPG, PNG, WEBP o cámara en vivo</p>
                 </div>
@@ -146,8 +152,8 @@
         <div class="mx-auto max-w-5xl">
           <div class="max-w-2xl">
             <p class="text-sm font-extrabold uppercase tracking-[.18em] text-leaf">Conoce el proyecto</p>
-            <h2 class="mt-2 text-3xl font-black tracking-tight sm:text-4xl">Tecnología que reconoce patitas</h2>
-            <p class="mt-4 leading-7 text-ink/65">Patitas IA es un proyecto educativo construido con una red neuronal convolucional. Antes de clasificar, un detector de objetos comprueba que haya un perro o un gato; después la imagen se ajusta al formato 100×100 aprendido por el clasificador.</p>
+            <h2 class="mt-2 text-3xl font-black tracking-tight sm:text-4xl">Tecnología que reconoce mascotas</h2>
+            <p class="mt-4 leading-7 text-ink/65">PetVision es un proyecto educativo construido con una red neuronal convolucional. Antes de clasificar, un detector de objetos comprueba que haya un perro o un gato; después la imagen se ajusta al formato 100×100 aprendido por el clasificador.</p>
           </div>
           <div class="mt-8 grid gap-4 sm:grid-cols-3">
             <article class="rounded-2xl bg-cream p-5"><i class="bx bx-camera text-2xl text-leaf" aria-hidden="true"></i><h3 class="mt-3 font-black">1. Elige una imagen</h3><p class="mt-2 text-sm leading-6 text-ink/65">Usa una foto guardada o toma una nueva con la cámara frontal o trasera.</p></article>
@@ -158,16 +164,14 @@
             <h3 class="font-black text-ink">¿Qué significa la confianza?</h3>
             <p class="mt-1">Es una estimación del modelo, no una garantía. El filtro previo intenta rechazar personas y objetos, pero también puede equivocarse: usa una foto clara y cercana de una sola mascota.</p>
           </div>
-          <a href="cuaderno/Clasificador_de_perros_y_gatos.html" class="focus-ring mt-7 inline-flex min-h-12 items-center gap-2 rounded-2xl bg-cream px-5 py-3 font-extrabold shadow-sm transition hover:text-leaf"><i class="bx bx-book-open text-xl" aria-hidden="true"></i>Explorar el notebook de entrenamiento<i class="bx bx-right-arrow-alt text-xl" aria-hidden="true"></i></a>
+          <a href="./cuaderno/Clasificador_de_perros_y_gatos.html" class="focus-ring mt-7 inline-flex min-h-12 items-center gap-2 rounded-2xl bg-cream px-5 py-3 font-extrabold shadow-sm transition hover:text-leaf"><i class="bx bx-book-open text-xl" aria-hidden="true"></i>Explorar el notebook de entrenamiento<i class="bx bx-right-arrow-alt text-xl" aria-hidden="true"></i></a>
         </div>
       </section>
     </main>
 
     <footer class="bg-ink px-5 py-8 text-center text-sm text-white/70 safe-bottom">
-      <p class="font-extrabold text-white"><i class="bx bx-paw mr-1 text-[#f4d77b]" aria-hidden="true"></i>Patitas IA</p>
-      <p class="mt-1">Soporte a la toma de decisiones</p>
-      <p class="mt-1">Docente: Jesús Bautista · Alumno: Luishiño Pericena</p>
-      <p id="pwa-status" class="mt-2 text-xs text-white/50">Puedes añadir Patitas IA a la pantalla de inicio desde el menú de tu navegador.</p>
+      <p class="font-extrabold text-white"><i class="bx bx-paw mr-1 text-[#f4d77b]" aria-hidden="true"></i><span id="pie-info"></span></p>
+      <p id="pwa-status" class="mt-2 text-xs text-white/50">Puedes añadir PetVision a la pantalla de inicio desde el menú de tu navegador.</p>
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@4.22.0/dist/tf.min.js"></script>
@@ -177,7 +181,8 @@
         "use strict";
 
         const SIZE = 400;
-        const HISTORY_KEY = "patitas-ia-history-v1";
+        const PIE_INFO = "PetVision · Autor: Rolando Velasco Soliz · Materia: INF432";
+        const HISTORY_KEY = "petvision-history-v1";
         const MAX_IMAGE_BYTES = 12 * 1024 * 1024;
         const elements = {
           video: document.getElementById("video"),
@@ -588,7 +593,7 @@
           installPrompt = null;
           elements.installApp.classList.add("hidden");
           elements.installApp.classList.remove("inline-flex");
-          elements.pwaStatus.textContent = "Patitas IA ya está instalada en este dispositivo.";
+          elements.pwaStatus.textContent = "PetVision ya está instalada en este dispositivo.";
         });
         if ("serviceWorker" in navigator && location.protocol !== "file:") {
           navigator.serviceWorker.register("./service-worker.js")
@@ -601,6 +606,7 @@
             });
         }
         window.addEventListener("pagehide", stopCamera);
+        document.getElementById("pie-info").textContent = PIE_INFO;
         renderHistory();
         loadModel();
       })();

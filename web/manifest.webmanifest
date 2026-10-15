@@ -1,21 +1,33 @@
 {
   "id": "./",
-  "name": "Patitas IA — Perros y gatos",
-  "short_name": "Patitas IA",
-  "description": "Juega a clasificar fotos de perros y gatos y descubre retos amables para tu mascota.",
+  "name": "PetVision — Perros y gatos",
+  "short_name": "PetVision",
+  "description": "Clasifica fotos de perros y gatos y descubre retos amables para tu mascota.",
   "lang": "es",
   "start_url": "./",
   "scope": "./",
   "display": "standalone",
   "orientation": "portrait",
-  "background_color": "#f7f5ef",
-  "theme_color": "#f7f5ef",
+  "background_color": "#FAF3E3",
+  "theme_color": "#FAF3E3",
   "icons": [
     {
-      "src": "assets/icon-pwa.svg",
-      "sizes": "any",
-      "type": "image/svg+xml",
-      "purpose": "any maskable"
+      "src": "./assets/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "./assets/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "./assets/icon-maskable-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
     }
   ]
 }

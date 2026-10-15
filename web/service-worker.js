@@ -1,17 +1,23 @@
-const SHELL_CACHE = "patitas-shell-v4";
-const EXTERNAL_CACHE = "patitas-external-v1";
+const SHELL_CACHE = "petvision-shell-v5";
+const EXTERNAL_CACHE = "petvision-external-v1";
 const APP_FILES = [
   "./",
   "./index.html",
   "./styles.css",
   "./cuaderno/Clasificador_de_perros_y_gatos.html",
-  "./assets/mascotas.svg",
-  "./assets/icon-pwa.svg",
+  "./assets/logo.png",
+  "./assets/logo-hero.png",
+  "./assets/favicon.png",
+  "./assets/favicon-48.png",
+  "./assets/apple-touch-icon.png",
+  "./assets/icon-192.png",
+  "./assets/icon-512.png",
+  "./assets/icon-maskable-512.png",
+  "./assets/og-image.png",
   "./manifest.webmanifest",
   "./modelo/model.json",
   "./modelo/group1-shard1of2.bin",
-  "./modelo/group1-shard2of2.bin",
-  "./assets/favicon.ico"
+  "./modelo/group1-shard2of2.bin"
 ];
 
 self.addEventListener("install", (event) => {
@@ -26,7 +32,7 @@ self.addEventListener("activate", (event) => {
   event.waitUntil(
     caches.keys()
       .then((keys) => Promise.all(keys
-        .filter((key) => key.startsWith("patitas-") && key !== SHELL_CACHE && key !== EXTERNAL_CACHE)
+        .filter((key) => key.startsWith("petvision-") && key !== SHELL_CACHE && key !== EXTERNAL_CACHE)
         .map((key) => caches.delete(key))
       ))
       .then(() => self.clients.claim())
