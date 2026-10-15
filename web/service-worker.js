@@ -11,8 +11,6 @@ const APP_FILES = [
   "./modelo/model.json",
   "./modelo/group1-shard1of2.bin",
   "./modelo/group1-shard2of2.bin",
-  "./assets/favicon-16x16.png",
-  "./assets/favicon-32x32.png",
   "./assets/favicon.ico"
 ];
 

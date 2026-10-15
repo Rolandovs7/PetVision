@@ -183,6 +183,8 @@ No abras `index.html` con doble clic. La cámara, el modelo y el service worker 
 ```text
 .
 ├── README.md                 Esta guía
+├── LICENSE                   Licencia Apache 2.0
+├── .gitignore
 ├── compose.yaml              Arranque con Docker
 ├── .dockerignore
 ├── docker/
@@ -191,7 +193,7 @@ No abras `index.html` con doble clic. La cámara, el modelo y el service worker 
 ├── docs/
 │   └── imagenes/             Fotos de esta documentación
 ├── entrenamiento/
-│   └── Clasificador_de_perros_y_gatos.ipynb
+│   └── Clasificador_de_perros_y_gatos.ipynb   Entrenamiento (solo código)
 └── web/                      Lo que ve el navegador
     ├── index.html
     ├── styles.css

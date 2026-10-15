@@ -1,6 +1,9 @@
 entrenamiento
 docs
+.opencode
 .git
 .vscode
 node_modules
 *.md
+*.ipynb
+*.log
