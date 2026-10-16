@@ -1,7 +1,6 @@
 "use strict";
 
 const SIZE = 400;
-const PIE_INFO = "PetVision · Autor: Rolando Velasco Soliz · Materia: INF432";
 const HISTORY_KEY = "petvision-history-v1";
 const MAX_IMAGE_BYTES = 12 * 1024 * 1024;
 
@@ -28,12 +27,10 @@ const elements = {
   barCatPct: document.getElementById("bar-cat-pct"),
   retry: document.getElementById("retry"),
   installApp: document.getElementById("install-app"),
-  themeToggle: document.getElementById("theme-toggle"),
   dropzone: document.getElementById("dropzone"),
   heroUpload: document.getElementById("hero-upload"),
   heroCamera: document.getElementById("hero-camera"),
   scanningLine: document.getElementById("scanning-line"),
-  pieInfo: document.getElementById("pie-info"),
   progressBar: document.getElementById("progress-bar"),
   progressText: document.getElementById("progress-text")
 };
@@ -46,35 +43,6 @@ let selectedImage = null;
 let previewUrl = null;
 let busy = false;
 let installPrompt = null;
-
-function initTheme() {
-  const theme = localStorage.getItem("pv-theme");
-  if (theme === "dark") document.documentElement.setAttribute("data-theme", "dark");
-  else if (theme === "light") document.documentElement.setAttribute("data-theme", "light");
-  else document.documentElement.removeAttribute("data-theme");
-  updateThemeMeta();
-  elements.themeToggle?.setAttribute("aria-pressed", theme === "dark" ? "true" : "false");
-}
-
-function toggleTheme() {
-  const isDark = document.documentElement.getAttribute("data-theme") === "dark";
-  if (isDark) {
-    document.documentElement.removeAttribute("data-theme");
-    localStorage.removeItem("pv-theme");
-    elements.themeToggle?.setAttribute("aria-pressed", "false");
-  } else {
-    document.documentElement.setAttribute("data-theme", "dark");
-    localStorage.setItem("pv-theme", "dark");
-    elements.themeToggle?.setAttribute("aria-pressed", "true");
-  }
-  updateThemeMeta();
-}
-
-function updateThemeMeta() {
-  const isDark = document.documentElement.getAttribute("data-theme") === "dark";
-  const meta = document.querySelector('meta[name="theme-color"]');
-  if (meta) meta.setAttribute("content", isDark ? "#1E2530" : "#FAF3E3");
-}
 
 function setStatus(message, isError = false) {
   elements.status.textContent = message;
@@ -309,7 +277,6 @@ async function loadModel() {
 }
 
 function bindEvents() {
-  elements.themeToggle?.addEventListener("click", toggleTheme);
   elements.heroUpload?.addEventListener("click", () => elements.upload.click());
   elements.heroCamera?.addEventListener("click", startCamera);
   elements.upload.addEventListener("change", (e) => {
@@ -377,8 +344,6 @@ function bindEvents() {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-  if (elements.pieInfo) elements.pieInfo.textContent = PIE_INFO;
-  initTheme();
   bindEvents();
   loadModel();
 });

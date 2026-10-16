@@ -27,14 +27,21 @@
   </head>
   <body>
     <header class="header">
-      <a href="#" class="brand" aria-label="PetVision, inicio">
+      <a href="#top" class="brand" aria-label="PetVision, inicio">
         <img src="./assets/logo.png" alt="" width="48" height="48" loading="eager">
         <span>PetVision</span>
       </a>
+
       <nav class="nav" aria-label="Navegación principal">
-        <a href="#como-funciona" class="nav-link">El proyecto</a>
-        <a href="./cuaderno/Clasificador_de_perros_y_gatos.html" class="btn btn-ghost">Ver cuaderno</a>
-        <button id="theme-toggle" class="theme-toggle" type="button" aria-pressed="false" aria-label="Cambiar tema">
+        <span class="nav__indicator" aria-hidden="true"></span>
+        <a href="#top" class="nav-link" data-spy>Inicio</a>
+        <a href="#analisis" class="nav-link" data-spy>Analizar</a>
+        <a href="#como-funciona" class="nav-link" data-spy>Cómo funciona</a>
+        <a href="./cuaderno/Clasificador_de_perros_y_gatos.html" class="nav-link">Cuaderno</a>
+      </nav>
+
+      <div class="header__actions">
+        <button type="button" class="theme-toggle js-theme-toggle" aria-pressed="false" aria-label="Cambiar tema">
           <span class="theme-toggle__icon theme-toggle__icon--sun" aria-hidden="true">
             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2"></path><path d="M12 20v2"></path><path d="M4.93 4.93l1.41 1.41"></path><path d="M17.66 17.66l1.41 1.41"></path><path d="M2 12h2"></path><path d="M20 12h2"></path><path d="M4.93 19.07l1.41-1.41"></path><path d="M17.66 6.34l1.41-1.41"></path></svg>
           </span>
@@ -42,11 +49,34 @@
             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path></svg>
           </span>
         </button>
+        <button type="button" class="btn btn-ghost btn-welcome js-open-welcome">¿Qué es PetVision?</button>
         <button id="install-app" type="button" class="btn btn-primary btn-install hidden"><span>Instalar app</span></button>
-      </nav>
+        <button type="button" class="nav-toggle" id="nav-toggle" aria-expanded="false" aria-controls="nav-panel" aria-label="Abrir menú">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7h16"></path><path d="M4 12h16"></path><path d="M4 17h16"></path></svg>
+        </button>
+      </div>
+
+      <div class="nav-panel" id="nav-panel" hidden>
+        <a href="#top" class="nav-panel__link">Inicio</a>
+        <a href="#analisis" class="nav-panel__link">Analizar</a>
+        <a href="#como-funciona" class="nav-panel__link">Cómo funciona</a>
+        <a href="./cuaderno/Clasificador_de_perros_y_gatos.html" class="nav-panel__link">Cuaderno</a>
+        <div class="nav-panel__actions">
+          <button type="button" class="theme-toggle js-theme-toggle" aria-pressed="false" aria-label="Cambiar tema">
+            <span class="theme-toggle__icon theme-toggle__icon--sun" aria-hidden="true">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2"></path><path d="M12 20v2"></path><path d="M4.93 4.93l1.41 1.41"></path><path d="M17.66 17.66l1.41 1.41"></path><path d="M2 12h2"></path><path d="M20 12h2"></path><path d="M4.93 19.07l1.41-1.41"></path><path d="M17.66 6.34l1.41-1.41"></path></svg>
+            </span>
+            <span class="theme-toggle__icon theme-toggle__icon--moon" aria-hidden="true">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path></svg>
+            </span>
+          </button>
+          <button type="button" class="btn btn-secondary js-open-welcome">¿Qué es PetVision?</button>
+        </div>
+      </div>
     </header>
+
     <main>
-      <section class="hero fade-up">
+      <section id="top" class="hero fade-up">
         <div class="hero__content">
           <div class="hero__badge">
             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="4.5" cy="8.5" r="2.5"></circle><circle cx="9" cy="4.5" r="2.5"></circle><circle cx="15" cy="4.5" r="2.5"></circle><circle cx="19.5" cy="8.5" r="2.5"></circle><path d="M17.34 14A5.97 5.97 0 0 0 12 12a5.97 5.97 0 0 0-5.34 2"></path><rect x="6" y="15" width="12" height="4" rx="2"></rect></svg>
@@ -200,8 +230,41 @@
       <p class="footer__github"><a href="https://github.com/Rolandovs7/PetVision" target="_blank" rel="noopener noreferrer">GitHub</a></p>
     </footer>
 
+    <div id="welcome" class="welcome" role="dialog" aria-modal="true" aria-labelledby="welcome-title" aria-describedby="welcome-desc" hidden>
+      <div class="welcome__overlay" data-close-welcome></div>
+      <div class="welcome__card" role="document">
+        <button type="button" class="welcome__close" data-close-welcome aria-label="Cerrar la bienvenida">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18"></path><path d="m6 6 12 12"></path></svg>
+        </button>
+        <div class="welcome__logo">
+          <span class="welcome__halo" aria-hidden="true"></span>
+          <span class="welcome__shine" aria-hidden="true"></span>
+          <img src="./assets/logo-hero.png" alt="Logotipo de PetVision" width="1024" height="495">
+        </div>
+        <p class="welcome__eyebrow">BIENVENIDO</p>
+        <h2 id="welcome-title" class="welcome__title">¿<span class="accent">Perro o gato</span>? Descúbrelo con tu cámara</h2>
+        <p id="welcome-desc" class="welcome__desc">Sube una foto o usa la cámara y la IA te dice qué mascota es, sin enviar tus imágenes a ningún sitio. Todo ocurre en tu dispositivo.</p>
+        <ul class="welcome__chips">
+          <li class="welcome__chip" style="--i:0">
+            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v18"></path><path d="M5 6l7-3 7 3"></path><path d="M5 18l7 3 7-3"></path><path d="M5 12l7-3 7 3"></path></svg>
+            <span>Detección con IA</span>
+          </li>
+          <li class="welcome__chip" style="--i:1">
+            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 2 4 14h6l-1 8 9-12h-6z"></path></svg>
+            <span>Resultado al instante</span>
+          </li>
+          <li class="welcome__chip" style="--i:2">
+            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l7 3v6c0 5-3.5 8-7 9-3.5-1-7-4-7-9V6z"></path><path d="m9 12 2 2 4-4"></path></svg>
+            <span>Funciona sin subir tus fotos</span>
+          </li>
+        </ul>
+        <button type="button" class="btn btn-primary welcome__cta" data-start-welcome>Empezar a analizar</button>
+      </div>
+    </div>
+
     <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@4.22.0/dist/tf.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/coco-ssd@2.2.3/dist/coco-ssd.min.js"></script>
+    <script src="./site.js" data-sw="./service-worker.js"></script>
     <script src="./app.js"></script>
   </body>
 </html>
