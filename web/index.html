@@ -3,7 +3,8 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-    <meta name="theme-color" content="#FAF3E3">
+    <meta name="theme-color" media="(prefers-color-scheme: light)" content="#FAF3E3">
+    <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#161a17">
     <meta name="description" content="Descubre si una foto es de un perro o un gato con este clasificador de inteligencia artificial. Usa tu cámara o sube una imagen, gratis y desde tu móvil.">
     <meta name="author" content="Rolando Velasco Soliz">
     <meta property="og:type" content="website">
@@ -26,11 +27,23 @@
         theme: {
           extend: {
             colors: {
-              ink: "#202720",
-              cream: "#f7f5ef",
-              leaf: "#46765a",
-              peach: "#f2b397",
-              butter: "#f4d77b"
+              ink: "rgb(var(--c-ink) / <alpha-value>)",
+              cream: "rgb(var(--c-cream) / <alpha-value>)",
+              leaf: "rgb(var(--c-leaf) / <alpha-value>)",
+              peach: "rgb(var(--c-peach) / <alpha-value>)",
+              butter: "rgb(var(--c-butter) / <alpha-value>)",
+              card: "rgb(var(--c-card) / <alpha-value>)",
+              footer: "rgb(var(--c-footer) / <alpha-value>)",
+              soft1: "rgb(var(--c-soft1) / <alpha-value>)",
+              soft2: "rgb(var(--c-soft2) / <alpha-value>)",
+              soft3: "rgb(var(--c-soft3) / <alpha-value>)",
+              soft4: "rgb(var(--c-soft4) / <alpha-value>)",
+              soft4h: "rgb(var(--c-soft4h) / <alpha-value>)",
+              softgreen: "rgb(var(--c-softgreen) / <alpha-value>)",
+              confidence: "rgb(var(--c-confidence) / <alpha-value>)",
+              gato: "rgb(var(--c-gato) / <alpha-value>)",
+              leafsolid: "rgb(var(--c-leafsolid) / <alpha-value>)",
+              leafsolidh: "rgb(var(--c-leafsolidh) / <alpha-value>)"
             },
             fontFamily: {
               sans: ["Nunito", "ui-sans-serif", "system-ui", "sans-serif"]
@@ -55,34 +68,34 @@
       </a>
       <nav class="flex items-center gap-1 sm:gap-3" aria-label="Navegación principal">
         <a href="#como-funciona" class="focus-ring rounded-xl px-2 py-2 text-sm font-extrabold text-ink/70 hover:text-leaf sm:px-3">El proyecto</a>
-        <button id="install-app" type="button" class="focus-ring hidden min-h-10 items-center gap-1.5 rounded-full bg-leaf px-3 py-2 text-xs font-extrabold text-white shadow-sm hover:bg-[#365f47] sm:px-4"><i class="bx bx-download text-base" aria-hidden="true"></i><span class="hidden sm:inline">Instalar app</span></button>
-        <a href="./cuaderno/Clasificador_de_perros_y_gatos.html" class="focus-ring inline-flex min-h-10 items-center gap-1.5 rounded-full bg-white px-3 py-2 text-xs font-extrabold text-ink shadow-sm transition hover:text-leaf sm:px-4"><i class="bx bx-book-open text-base" aria-hidden="true"></i><span class="hidden sm:inline">Ver cuaderno</span><span class="sm:hidden">Notebook</span></a>
+        <button id="install-app" type="button" class="focus-ring hidden min-h-10 items-center gap-1.5 rounded-full bg-leafsolid px-3 py-2 text-xs font-extrabold text-white shadow-sm hover:bg-leafsolidh sm:px-4"><i class="bx bx-download text-base" aria-hidden="true"></i><span class="hidden sm:inline">Instalar app</span></button>
+        <a href="./cuaderno/Clasificador_de_perros_y_gatos.html" class="focus-ring inline-flex min-h-10 items-center gap-1.5 rounded-full bg-card px-3 py-2 text-xs font-extrabold text-ink shadow-sm transition hover:text-leaf sm:px-4"><i class="bx bx-book-open text-base" aria-hidden="true"></i><span class="hidden sm:inline">Ver cuaderno</span><span class="sm:hidden">Notebook</span></a>
       </nav>
     </header>
 
     <main>
       <section class="mx-auto grid max-w-6xl items-center gap-7 px-5 pb-12 pt-5 sm:px-8 md:grid-cols-[1.05fr_.95fr] md:gap-12 md:pb-20 md:pt-10">
         <div class="order-1 md:order-1">
-          <div class="mb-5 inline-flex items-center gap-2 rounded-full bg-white px-4 py-2 text-xs font-extrabold text-leaf shadow-sm">
+          <div class="mb-5 inline-flex items-center gap-2 rounded-full bg-card px-4 py-2 text-xs font-extrabold text-leaf shadow-sm">
             <i class="bx bx-paw text-lg" aria-hidden="true"></i>
             INTELIGENCIA ARTIFICIAL, CON MUCHO CARIÑO
           </div>
-          <h1 class="hero-title max-w-xl text-4xl font-black leading-[1.08] tracking-tight sm:text-5xl lg:text-6xl">¿Team <span class="text-leaf">perro</span> o team <span class="text-[#ca7957]">gato</span>?</h1>
+          <h1 class="hero-title max-w-xl text-4xl font-black leading-[1.08] tracking-tight sm:text-5xl lg:text-6xl">¿Team <span class="text-leaf">perro</span> o team <span class="text-gato">gato</span>?</h1>
           <p class="mt-4 max-w-lg text-base leading-7 text-ink/70 sm:text-lg">Una foto, dos posibles protagonistas. Súbela o usa la cámara y deja que nuestra IA lo descubra.</p>
-          <a href="#clasificador" class="focus-ring mt-6 inline-flex min-h-12 items-center justify-center gap-2 rounded-2xl bg-leaf px-6 py-3 font-extrabold text-white shadow-soft transition hover:-translate-y-0.5 hover:bg-[#365f47]"><i class="bx bx-scan text-xl" aria-hidden="true"></i>¡Vamos a descubrirlo!</a>
+          <a href="#clasificador" class="focus-ring mt-6 inline-flex min-h-12 items-center justify-center gap-2 rounded-2xl bg-leafsolid px-6 py-3 font-extrabold text-white shadow-soft transition hover:-translate-y-0.5 hover:bg-leafsolidh"><i class="bx bx-scan text-xl" aria-hidden="true"></i>¡Vamos a descubrirlo!</a>
           <div class="mt-4 flex flex-wrap gap-x-4 gap-y-2 text-xs font-semibold text-ink/55">
             <span><i class="bx bx-shield-quarter mr-1 text-base text-leaf" aria-hidden="true"></i>Procesamiento local</span>
             <span><i class="bx bx-user mr-1 text-base text-leaf" aria-hidden="true"></i>Sin cuenta</span>
           </div>
         </div>
         <div class="order-2 px-1 md:order-2">
-          <div class="relative mx-auto max-w-[500px] overflow-hidden rounded-[2rem] bg-[#e9eee2] p-3 shadow-soft sm:p-5">
+          <div class="relative mx-auto max-w-[500px] overflow-hidden rounded-[2rem] bg-soft1 p-3 shadow-soft sm:p-5">
             <img src="./assets/logo-hero.png" alt="Logotipo de PetVision" width="1024" height="495" fetchpriority="high" class="h-auto w-full">
           </div>
         </div>
       </section>
 
-      <section id="clasificador" class="scroll-mt-16 bg-[#eaece2] px-4 py-12 sm:px-8 sm:py-16">
+      <section id="clasificador" class="scroll-mt-16 bg-soft2 px-4 py-12 sm:px-8 sm:py-16">
         <div class="mx-auto max-w-5xl">
           <div class="mx-auto mb-8 max-w-xl text-center">
             <p class="text-sm font-extrabold uppercase tracking-[.18em] text-leaf">Tu turno</p>
@@ -91,8 +104,8 @@
           </div>
 
           <div class="grid gap-5 lg:grid-cols-[1.15fr_.85fr]">
-            <div class="rounded-[2rem] bg-white p-3 shadow-soft sm:p-5">
-              <div class="mobile-image relative flex aspect-square max-h-[520px] items-center justify-center overflow-hidden rounded-[1.5rem] bg-[#f2f0e9]">
+            <div class="rounded-[2rem] bg-card p-3 shadow-soft sm:p-5">
+              <div class="mobile-image relative flex aspect-square max-h-[520px] items-center justify-center overflow-hidden rounded-[1.5rem] bg-soft3">
                 <video id="video" class="hidden h-full w-full object-fill" playsinline autoplay muted aria-label="Vista previa de la cámara"></video>
                 <img id="foto-preview" class="hidden h-full w-full object-contain" alt="Imagen seleccionada para clasificar">
                 <div id="placeholder" class="px-6 text-center">
@@ -100,33 +113,33 @@
                   <p class="mt-4 font-extrabold">Tu foto aparecerá aquí</p>
                   <p class="mt-1 text-sm text-ink/55">JPG, PNG, WEBP o cámara en vivo</p>
                 </div>
-                <div id="camera-tag" class="absolute left-3 top-3 hidden rounded-full bg-ink/75 px-3 py-1.5 text-xs font-bold text-white">Cámara activa</div>
+                <div id="camera-tag" class="absolute left-3 top-3 hidden rounded-full bg-[#202720]/75 px-3 py-1.5 text-xs font-bold text-white">Cámara activa</div>
               </div>
               <canvas id="canvas" width="400" height="400" class="hidden" aria-hidden="true"></canvas>
               <div class="mt-4 grid grid-cols-2 gap-3">
-                <button id="start-camera" type="button" class="focus-ring min-h-12 rounded-2xl border-2 border-leaf px-3 py-3 text-sm font-extrabold text-leaf transition hover:bg-[#f2f7f1]"><i class="bx bx-camera mr-1 text-lg" aria-hidden="true"></i>Usar cámara</button>
+                <button id="start-camera" type="button" class="focus-ring min-h-12 rounded-2xl border-2 border-leaf px-3 py-3 text-sm font-extrabold text-leaf transition hover:bg-softgreen"><i class="bx bx-camera mr-1 text-lg" aria-hidden="true"></i>Usar cámara</button>
                 <label for="image-upload" class="focus-ring flex min-h-12 cursor-pointer items-center justify-center rounded-2xl border-2 border-ink/10 px-3 py-3 text-center text-sm font-extrabold transition hover:border-leaf hover:text-leaf"><i class="bx bx-image-add mr-1 text-lg" aria-hidden="true"></i>Subir una foto</label>
                 <input id="image-upload" class="sr-only" type="file" accept="image/jpeg,image/png,image/webp,image/gif">
-                <button id="switch-camera" type="button" class="focus-ring col-span-2 hidden min-h-11 rounded-xl bg-[#f4f3ed] px-3 py-2 text-sm font-bold text-ink/75 hover:bg-[#ebe9df]" aria-label="Cambiar entre cámara frontal y trasera"><i class="bx bx-refresh mr-1 text-lg" aria-hidden="true"></i>Cambiar cámara frontal / trasera</button>
-                <button id="classify" type="button" disabled class="focus-ring col-span-2 min-h-14 rounded-2xl bg-leaf px-4 py-3 font-extrabold text-white shadow-sm transition hover:bg-[#365f47] disabled:cursor-not-allowed disabled:bg-ink/20"><i class="bx bx-scan mr-1 text-xl" aria-hidden="true"></i>Analizar imagen</button>
+                <button id="switch-camera" type="button" class="focus-ring col-span-2 hidden min-h-11 rounded-xl bg-soft4 px-3 py-2 text-sm font-bold text-ink/75 hover:bg-soft4h" aria-label="Cambiar entre cámara frontal y trasera"><i class="bx bx-refresh mr-1 text-lg" aria-hidden="true"></i>Cambiar cámara frontal / trasera</button>
+                <button id="classify" type="button" disabled class="focus-ring col-span-2 min-h-14 rounded-2xl bg-leafsolid px-4 py-3 font-extrabold text-white shadow-sm transition hover:bg-leafsolidh disabled:cursor-not-allowed disabled:bg-ink/15 disabled:text-ink/40"><i class="bx bx-scan mr-1 text-xl" aria-hidden="true"></i>Analizar imagen</button>
               </div>
               <p id="status" role="status" aria-live="polite" class="mt-3 min-h-6 text-center text-sm font-bold text-ink/60">Preparando el modelo de IA…</p>
             </div>
 
             <aside class="flex flex-col gap-5">
-              <section class="flex min-h-56 flex-1 flex-col items-center justify-center rounded-[2rem] bg-[#f4d77b] p-6 text-center shadow-soft sm:p-8" aria-labelledby="result-heading">
+              <section class="flex min-h-56 flex-1 flex-col items-center justify-center rounded-[2rem] bg-butter p-6 text-center shadow-soft sm:p-8" aria-labelledby="result-heading">
                 <p id="result-heading" class="text-xs font-black uppercase tracking-[.2em] text-ink/60">Resultado</p>
                 <div id="result-icon" class="mt-4 text-5xl text-ink" aria-hidden="true"><i class="bx bx-paw"></i></div>
                 <p id="result-label" class="section-title mt-2 text-2xl font-black sm:text-3xl">Aún no lo sabemos</p>
                 <p id="result-confidence" class="mt-2 text-sm font-bold text-ink/65"></p>
-                <button id="speak-result" type="button" class="focus-ring mt-5 hidden min-h-11 rounded-full bg-white/70 px-5 py-2 text-sm font-extrabold hover:bg-white" aria-label="Escuchar el resultado"><i class="bx bx-volume-full mr-1 text-lg" aria-hidden="true"></i>Escuchar resultado</button>
-                <div id="challenge-box" class="mt-5 hidden w-full max-w-sm rounded-2xl bg-white/70 p-4 text-left">
+                <button id="speak-result" type="button" class="focus-ring mt-5 hidden min-h-11 rounded-full bg-card/70 px-5 py-2 text-sm font-extrabold hover:bg-card" aria-label="Escuchar el resultado"><i class="bx bx-volume-full mr-1 text-lg" aria-hidden="true"></i>Escuchar resultado</button>
+                <div id="challenge-box" class="mt-5 hidden w-full max-w-sm rounded-2xl bg-card/70 p-4 text-left">
                   <p class="text-xs font-black uppercase tracking-wider text-leaf"><i class="bx bx-joystick mr-1" aria-hidden="true"></i>Reto amable para hoy</p>
                   <p id="challenge-text" class="mt-2 text-sm font-bold leading-6"></p>
-                  <button id="new-challenge" type="button" class="focus-ring mt-2 rounded-full px-3 py-2 text-xs font-extrabold text-leaf hover:bg-white"><i class="bx bx-refresh mr-1" aria-hidden="true"></i>Otro reto</button>
+                  <button id="new-challenge" type="button" class="focus-ring mt-2 rounded-full px-3 py-2 text-xs font-extrabold text-leaf hover:bg-card"><i class="bx bx-refresh mr-1" aria-hidden="true"></i>Otro reto</button>
                 </div>
               </section>
-              <section class="rounded-[2rem] bg-white p-5 shadow-soft sm:p-6" aria-labelledby="privacy-heading">
+              <section class="rounded-[2rem] bg-card p-5 shadow-soft sm:p-6" aria-labelledby="privacy-heading">
                 <h3 id="privacy-heading" class="font-black"><i class="bx bx-shield-quarter mr-1 text-xl text-leaf" aria-hidden="true"></i>Tu privacidad importa</h3>
                 <p class="mt-2 text-sm leading-6 text-ink/65">Las dos comprobaciones de IA ocurren en este dispositivo. La foto no se sube; solo guardamos aquí el resultado, la fecha y la confianza.</p>
               </section>
@@ -142,13 +155,13 @@
             <p class="text-sm font-extrabold uppercase tracking-[.18em] text-leaf">En este dispositivo</p>
             <h2 class="mt-1 text-2xl font-black sm:text-3xl">Tus últimas detecciones</h2>
           </div>
-          <button id="clear-history" type="button" class="focus-ring hidden rounded-xl px-4 py-2 text-sm font-extrabold text-ink/55 hover:bg-white hover:text-red-700"><i class="bx bx-trash mr-1" aria-hidden="true"></i>Borrar historial</button>
+          <button id="clear-history" type="button" class="focus-ring hidden rounded-xl px-4 py-2 text-sm font-extrabold text-ink/55 hover:bg-card hover:text-red-700"><i class="bx bx-trash mr-1" aria-hidden="true"></i>Borrar historial</button>
         </div>
         <p id="history-empty" class="mt-5 rounded-2xl border border-dashed border-ink/15 p-6 text-center text-sm text-ink/55">Todavía no hay resultados. Cuando clasifiques una imagen, aparecerá aquí.</p>
         <ul id="history-list" class="mt-5 grid gap-3 sm:grid-cols-2" aria-label="Historial de clasificaciones"></ul>
       </section>
 
-      <section id="como-funciona" class="bg-white px-5 py-12 sm:px-8 sm:py-16">
+      <section id="como-funciona" class="bg-card px-5 py-12 sm:px-8 sm:py-16">
         <div class="mx-auto max-w-5xl">
           <div class="max-w-2xl">
             <p class="text-sm font-extrabold uppercase tracking-[.18em] text-leaf">Conoce el proyecto</p>
@@ -169,7 +182,7 @@
       </section>
     </main>
 
-    <footer class="bg-ink px-5 py-8 text-center text-sm text-white/70 safe-bottom">
+    <footer class="bg-footer px-5 py-8 text-center text-sm text-white/70 safe-bottom">
       <p class="font-extrabold text-white"><i class="bx bx-paw mr-1 text-[#f4d77b]" aria-hidden="true"></i><span id="pie-info"></span></p>
       <p id="pwa-status" class="mt-2 text-xs text-white/50">Puedes añadir PetVision a la pantalla de inicio desde el menú de tu navegador.</p>
     </footer>
@@ -401,7 +414,7 @@
           elements.clearHistory.classList.toggle("hidden", entries.length === 0);
           for (const item of entries) {
             const row = document.createElement("li");
-            row.className = "flex items-center justify-between gap-4 rounded-2xl bg-white p-4 shadow-sm";
+            row.className = "flex items-center justify-between gap-4 rounded-2xl bg-card p-4 shadow-sm";
             const description = document.createElement("div");
             const title = document.createElement("p");
             title.className = "font-extrabold";
@@ -413,7 +426,7 @@
             date.className = "mt-1 text-xs font-semibold text-ink/50";
             date.textContent = new Date(item.timestamp).toLocaleString("es", { dateStyle: "medium", timeStyle: "short" });
             const certainty = document.createElement("span");
-            certainty.className = "rounded-full bg-[#eaf1e9] px-3 py-1 text-xs font-extrabold text-leaf";
+            certainty.className = "rounded-full bg-confidence px-3 py-1 text-xs font-extrabold text-leaf";
             certainty.textContent = `${Math.round(item.confidence * 100)}%`;
             description.append(title, date);
             row.append(description, certainty);

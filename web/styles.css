@@ -1,9 +1,56 @@
 :root {
-  color-scheme: light;
+  color-scheme: light dark;
+
+  --c-ink: 32 39 32;
+  --c-cream: 247 245 239;
+  --c-leaf: 70 118 90;
+  --c-peach: 242 179 151;
+  --c-butter: 244 215 123;
+  --c-card: 255 255 255;
+  --c-footer: 32 39 32;
+  --c-soft1: 233 238 226;
+  --c-soft2: 234 236 226;
+  --c-soft3: 242 240 233;
+  --c-soft4: 244 243 237;
+  --c-soft4h: 235 233 223;
+  --c-softgreen: 242 247 241;
+  --c-confidence: 234 241 233;
+  --c-gato: 202 121 87;
+  --c-leafsolid: 70 118 90;
+  --c-leafsolidh: 54 95 71;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --c-ink: 233 236 230;
+    --c-cream: 22 26 23;
+    --c-leaf: 143 195 163;
+    --c-peach: 226 160 130;
+    --c-butter: 42 38 24;
+    --c-card: 34 40 35;
+    --c-footer: 14 18 15;
+    --c-soft1: 31 37 31;
+    --c-soft2: 26 31 27;
+    --c-soft3: 28 34 29;
+    --c-soft4: 42 49 43;
+    --c-soft4h: 51 59 52;
+    --c-softgreen: 37 48 41;
+    --c-confidence: 37 48 41;
+    --c-gato: 227 154 120;
+    --c-leafsolid: 63 122 88;
+    --c-leafsolidh: 79 146 106;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  .text-red-700 {
+    color: #fca5a5;
+  }
 }
 
 html {
   scroll-behavior: smooth;
+  background-color: rgb(var(--c-cream));
 }
 
 body {
@@ -27,7 +74,7 @@ body {
 }
 
 .focus-ring:focus-visible {
-  outline: 3px solid #46765a;
+  outline: 3px solid rgb(var(--c-leaf));
   outline-offset: 3px;
 }
 

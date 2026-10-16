@@ -9,7 +9,8 @@ Aplicación de apoyo a la toma de decisiones que clasifica una foto como **perro
 | **Materia** | INF432 |
 | **Producto** | Aplicación web estática, modelo de visión y contenedor Docker |
 
-![Portada de PetVision: un perro y un gato junto al título del proyecto](docs/imagenes/portada-patitas.jpg)
+![Portada de PetVision: interfaz en tema claro](docs/capturas/interfaz-claro.png)
+![Portada de PetVision: interfaz en tema oscuro](docs/capturas/interfaz-oscuro.png)
 
 La persona aporta la foto. El sistema comprueba que haya una mascota, estima la clase y muestra un porcentaje de confianza. La decisión final sigue siendo de quien usa la aplicación: si la confianza es baja, el resultado se marca como poco seguro.
 
