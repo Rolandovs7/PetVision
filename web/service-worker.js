@@ -1,10 +1,11 @@
-const SHELL_CACHE = "petvision-shell-v5";
-const EXTERNAL_CACHE = "petvision-external-v1";
+const SHELL_CACHE = "petvision-shell-v6";
+const EXTERNAL_CACHE = "petvision-external-v2";
 const APP_FILES = [
   "./",
   "./index.html",
   "./styles.css",
   "./cuaderno/Clasificador_de_perros_y_gatos.html",
+  "./app.js",
   "./assets/logo.png",
   "./assets/logo-hero.png",
   "./assets/favicon.png",

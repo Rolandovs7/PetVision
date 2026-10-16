@@ -10,7 +10,13 @@ Aplicación de apoyo a la toma de decisiones que clasifica una foto como **perro
 | **Producto** | Aplicación web estática, modelo de visión y contenedor Docker |
 
 ![Portada de PetVision: interfaz en tema claro](docs/capturas/interfaz-claro.png)
-![Portada de PetVision: interfaz en tema oscuro](docs/capturas/interfaz-oscuro.png)
+
+Galería de la interfaz en tema claro y oscuro (escritorio y móvil):
+
+| Escritorio | Móvil |
+| :---: | :---: |
+| ![Interfaz en tema claro](docs/capturas/interfaz-claro.png) | ![Interfaz en tema claro, móvil](docs/capturas/interfaz-claro-movil.png) |
+| ![Interfaz en tema oscuro](docs/capturas/interfaz-oscuro.png) | ![Interfaz en tema oscuro, móvil](docs/capturas/interfaz-oscuro-movil.png) |
 
 La persona aporta la foto. El sistema comprueba que haya una mascota, estima la clase y muestra un porcentaje de confianza. La decisión final sigue siendo de quien usa la aplicación: si la confianza es baja, el resultado se marca como poco seguro.
 
@@ -44,6 +50,8 @@ Si la confianza queda por debajo del 60 %, la interfaz avisa que el resultado es
 3. Pulsa **Analizar imagen**.
 4. Lee la clase, la confianza y, si quieres, escucha el resultado en voz alta.
 5. Revisa el historial de las últimas detecciones. Se puede borrar en cualquier momento.
+
+La cabecera incluye un interruptor de **tema claro / tema oscuro**; si no eliges ninguno, se respeta el ajuste de tu sistema y, al elegir, la preferencia se recuerda en este dispositivo.
 
 La foto no se envía a un servidor. El historial guarda solo la etiqueta, la confianza y la fecha, dentro del navegador.
 
@@ -192,12 +200,14 @@ No abras `index.html` con doble clic. La cámara, el modelo y el service worker 
 │   ├── Dockerfile
 │   └── nginx.conf
 ├── docs/
-│   └── imagenes/             Fotos de esta documentación
+│   ├── imagenes/             Diagramas y capturas de esta documentación
+│   └── capturas/             Capturas de la interfaz (claro/oscuro, escritorio/móvil)
 ├── entrenamiento/
 │   └── Clasificador_de_perros_y_gatos.ipynb   Entrenamiento (solo código)
 └── web/                      Lo que ve el navegador
     ├── index.html
     ├── styles.css
+    ├── app.js
     ├── service-worker.js
     ├── manifest.webmanifest
     ├── assets/
