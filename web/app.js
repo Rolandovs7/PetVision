@@ -26,7 +26,6 @@ const elements = {
   barCat: document.getElementById("bar-cat"),
   barCatPct: document.getElementById("bar-cat-pct"),
   retry: document.getElementById("retry"),
-  installApp: document.getElementById("install-app"),
   dropzone: document.getElementById("dropzone"),
   heroUpload: document.getElementById("hero-upload"),
   heroCamera: document.getElementById("hero-camera"),
@@ -42,7 +41,6 @@ let facingMode = "environment";
 let selectedImage = null;
 let previewUrl = null;
 let busy = false;
-let installPrompt = null;
 
 function setStatus(message, isError = false) {
   elements.status.textContent = message;
@@ -324,22 +322,6 @@ function bindEvents() {
     if (e.dataTransfer.files && e.dataTransfer.files[0]) {
       showSelectedPhoto(e.dataTransfer.files[0]);
     }
-  });
-  window.addEventListener("beforeinstallprompt", (e) => {
-    e.preventDefault();
-    installPrompt = e;
-    elements.installApp?.classList.remove("hidden");
-  });
-  elements.installApp?.addEventListener("click", async () => {
-    if (!installPrompt) return;
-    installPrompt.prompt();
-    await installPrompt.userChoice;
-    installPrompt = null;
-    elements.installApp?.classList.add("hidden");
-  });
-  window.addEventListener("appinstalled", () => {
-    installPrompt = null;
-    elements.installApp?.classList.add("hidden");
   });
 }
 

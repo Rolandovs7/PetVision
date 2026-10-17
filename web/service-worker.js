@@ -1,5 +1,5 @@
-const SHELL_CACHE = "petvision-shell-v8";
-const EXTERNAL_CACHE = "petvision-external-v4";
+const SHELL_CACHE = "petvision-shell-v9";
+const EXTERNAL_CACHE = "petvision-external-v5";
 const APP_FILES = [
   "./",
   "./index.html",

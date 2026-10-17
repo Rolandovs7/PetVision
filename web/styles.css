@@ -141,7 +141,7 @@ img {
   inset-inline: 0;
   z-index: 20;
   display: grid;
-  grid-template-columns: 1fr auto 1fr;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
   align-items: center;
   gap: 1rem;
   padding: 0.75rem clamp(1rem, 4vw, 2.5rem);
@@ -150,11 +150,16 @@ img {
   border-bottom: 1px solid var(--border);
 }
 
+.header > * {
+  min-width: 0;
+}
+
 .brand {
   justify-self: start;
   display: flex;
   align-items: center;
   gap: 0.8rem;
+  min-width: 0;
   text-decoration: none;
   color: var(--text);
   font-weight: 800;
@@ -164,10 +169,15 @@ img {
 }
 
 .brand img {
+  flex: none;
   width: 48px;
   height: 48px;
   border-radius: 14px;
   box-shadow: var(--shadow-soft);
+}
+
+.brand__name {
+  white-space: nowrap;
 }
 
 .nav {
@@ -224,6 +234,7 @@ img {
   display: flex;
   align-items: center;
   gap: 0.5rem;
+  min-width: 0;
 }
 
 .btn-welcome {
@@ -286,29 +297,38 @@ img {
 
 .nav-panel__actions {
   display: flex;
-  align-items: center;
+  flex-direction: column;
+  align-items: stretch;
   gap: 0.6rem;
   margin-top: 0.5rem;
   padding-top: 0.7rem;
   border-top: 1px solid var(--border);
 }
 
-.nav-panel__actions .btn {
+.nav-panel__row {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.nav-panel__row .btn {
   flex: 1;
+}
+
+.btn-block {
+  width: 100%;
 }
 
 @media (max-width: 960px) {
   .header {
-    grid-template-columns: 1fr auto;
+    grid-template-columns: minmax(0, 1fr) auto;
   }
 
   .nav {
     display: none;
   }
 
-  .header__actions .btn-welcome,
-  .header__actions .theme-toggle,
-  .header__actions .btn-install {
+  .header__actions .btn-welcome {
     display: none;
   }
 
@@ -439,10 +459,40 @@ img {
 
 .btn-install {
   display: none;
+  padding: 0.5rem 1rem;
+  min-height: 44px;
+  font-size: 0.92rem;
 }
 
 .btn-install:not(.hidden) {
   display: inline-flex;
+}
+
+@media (max-width: 767.98px) {
+  .header__actions .btn-install {
+    display: none;
+  }
+}
+
+@media (max-width: 420px) {
+  .header {
+    gap: 0.5rem;
+    padding-inline: clamp(0.7rem, 3.5vw, 1rem);
+  }
+
+  .brand {
+    gap: 0.55rem;
+  }
+
+  .brand img {
+    width: 40px;
+    height: 40px;
+    border-radius: 12px;
+  }
+
+  .brand__name {
+    font-size: 1rem;
+  }
 }
 
 .btn-about {
@@ -1164,5 +1214,123 @@ main {
 }
 
 body.welcome-open {
+  overflow: hidden;
+}
+
+.modal {
+  position: fixed;
+  inset: 0;
+  z-index: 110;
+  display: grid;
+  place-items: center;
+  padding: clamp(0.8rem, 3vw, 1.5rem);
+}
+
+.modal[hidden] {
+  display: none;
+}
+
+.modal__overlay {
+  position: absolute;
+  inset: 0;
+  background: color-mix(in srgb, #14100C 62%, transparent);
+  backdrop-filter: blur(7px);
+  opacity: 0;
+  transition: opacity 300ms ease;
+}
+
+.modal.is-open .modal__overlay {
+  opacity: 1;
+}
+
+.modal__card {
+  position: relative;
+  width: min(520px, 100%);
+  max-height: calc(100vh - 2rem);
+  overflow-y: auto;
+  padding: clamp(1.4rem, 5vw, 2.2rem);
+  border-radius: var(--radius-lg);
+  border: 1.5px solid var(--border-strong);
+  background: var(--surface);
+  box-shadow: 0 40px 90px -40px rgba(20, 16, 12, 0.55);
+  text-align: left;
+  opacity: 0;
+  transform: translateY(18px) scale(0.94);
+  transition: opacity 320ms ease, transform 360ms cubic-bezier(0.2, 0.8, 0.25, 1);
+}
+
+.modal.is-open .modal__card {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+.modal__close {
+  position: absolute;
+  top: 0.8rem;
+  right: 0.8rem;
+  width: 42px;
+  height: 42px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  border: 1.5px solid var(--border-strong);
+  background: var(--surface);
+  color: var(--text-secondary);
+  cursor: pointer;
+}
+
+.modal__close:hover,
+.modal__close:focus-visible {
+  color: var(--text);
+}
+
+.modal__close:focus-visible {
+  outline: 3px solid var(--naranja);
+  outline-offset: 3px;
+}
+
+.modal__title {
+  font-family: var(--font-display);
+  font-size: clamp(1.35rem, 4vw, 1.9rem);
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+  margin: 0 2.6rem 0.6rem 0;
+}
+
+.modal__lead {
+  margin: 0 0 1.1rem;
+  color: var(--text-secondary);
+}
+
+.install-steps__group h3 {
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  margin: 0 0 0.55rem;
+}
+
+.install-steps__group ol {
+  margin: 0;
+  padding-left: 1.2rem;
+  display: grid;
+  gap: 0.5rem;
+  color: var(--text-secondary);
+}
+
+.install-steps__group li {
+  line-height: 1.55;
+}
+
+.install-steps__group p {
+  margin: 0;
+  line-height: 1.6;
+  color: var(--text-secondary);
+}
+
+.install-steps__group strong {
+  color: var(--text);
+}
+
+body.modal-open {
   overflow: hidden;
 }
