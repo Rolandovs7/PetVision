@@ -1,236 +1,232 @@
-# PetVision
+<p align="center">
+  <img src="web/assets/logo-hero.png" alt="PetVision" width="380">
+</p>
 
-Aplicación de apoyo a la toma de decisiones que clasifica una foto como **perro** o **gato**.
+<h1 align="center">PetVision</h1>
+
+<p align="center"><strong>¿Perro o gato? Una IA que lo descubre en tu navegador</strong></p>
+
+<p align="center">
+  <img alt="HTML5" src="https://img.shields.io/badge/HTML5-F08A4B?style=for-the-badge&logo=html5&logoColor=white">
+  <img alt="CSS3" src="https://img.shields.io/badge/CSS3-8FA9C8?style=for-the-badge&logo=css3&logoColor=white">
+  <img alt="JavaScript" src="https://img.shields.io/badge/JavaScript-F08A4B?style=for-the-badge&logo=javascript&logoColor=white">
+  <img alt="TensorFlow.js" src="https://img.shields.io/badge/TensorFlow.js-8FA9C8?style=for-the-badge&logo=tensorflow&logoColor=white">
+  <img alt="PWA" src="https://img.shields.io/badge/PWA-F08A4B?style=for-the-badge">
+  <img alt="Apache-2.0" src="https://img.shields.io/badge/Apache--2.0-8FA9C8?style=for-the-badge&logo=apache&logoColor=white">
+</p>
+
+<p align="center">
+  <a href="https://rolandovs7.github.io/PetVision/">
+    <img alt="Demo en vivo" src="https://img.shields.io/badge/Demo_en_vivo-F08A4B?style=for-the-badge&logo=githubpages&logoColor=white">
+  </a>
+</p>
+
+Le enseñas una foto a PetVision y te dice si el animal es un perro o un gato, con un porcentaje de confianza. Todo pasa dentro de tu navegador: no hay servidor que reciba la imagen ni registro que la guarde por ahí. Es una app sencilla, pensada para apoyar una decisión y no para reemplazar tu criterio.
+
+---
+
+## Pruébalo
+
+Ábrela aquí mismo: **[rolandovs7.github.io/PetVision](https://rolandovs7.github.io/PetVision/)**
+
+### Instálala como app (PWA)
+
+PetVision se puede quedar en tu teléfono o escritorio. Después de la primera visita, funciona incluso sin conexión.
+
+- **Android / Chrome / Edge:** abre la página y elige «Instalar app» o «Añadir a pantalla de inicio» en el menú del navegador. Si el botón **Instalar app** aparece en la cabecera, tócalo directamente.
+- **iOS / Safari:** toca el botón de compartir y elige «Añadir a la pantalla de inicio».
+- **Escritorio:** busca el icono de instalar en la barra de direcciones.
+
+### En tres pasos
+
+1. **Elige una foto o usa la cámara.** Arrastra una imagen, tócala desde tu galería o enciende la cámara.
+2. **Espera el análisis.** La IA comprueba que haya una mascota y luego clasifica.
+3. **Lee el resultado.** Verás la clase, la confianza y las barras de probabilidad de perro y de gato.
+
+---
+
+## Galería
+
+La misma interfaz en los dos temas:
+
+| Tema claro | Tema oscuro |
+| :---: | :---: |
+| ![Inicio en tema claro](docs/capturas/interfaz-claro.png) | ![Inicio en tema oscuro](docs/capturas/interfaz-oscuro.png) |
+| ![Vista móvil en tema claro](docs/capturas/interfaz-claro-movil.png) | ![Vista móvil en tema oscuro](docs/capturas/interfaz-oscuro-movil.png) |
+
+Otras vistas de la aplicación:
 
 | | |
-|---|---|
-| **Proyecto** | PetVision |
-| **Autor** | Rolando Velasco Soliz |
-| **Materia** | INF432 |
-| **Producto** | Aplicación web estática, modelo de visión y contenedor Docker |
-
-![Portada de PetVision: interfaz en tema claro](docs/capturas/interfaz-claro.png)
-
-Galería de la interfaz en tema claro y oscuro (escritorio y móvil):
-
-| Escritorio | Móvil |
 | :---: | :---: |
-| ![Interfaz en tema claro](docs/capturas/interfaz-claro.png) | ![Interfaz en tema claro, móvil](docs/capturas/interfaz-claro-movil.png) |
-| ![Interfaz en tema oscuro](docs/capturas/interfaz-oscuro.png) | ![Interfaz en tema oscuro, móvil](docs/capturas/interfaz-oscuro-movil.png) |
-
-La persona aporta la foto. El sistema comprueba que haya una mascota, estima la clase y muestra un porcentaje de confianza. La decisión final sigue siendo de quien usa la aplicación: si la confianza es baja, el resultado se marca como poco seguro.
-
-No hace falta Node.js. La página, los estilos y el modelo ya están listos. Docker solo levanta Nginx para servir esos archivos.
+| ![Ventana de bienvenida](docs/capturas/bienvenida.png) | ![Cuaderno navegable del entrenamiento](docs/capturas/cuaderno.png) |
+| ![Resultado cuando la foto es un perro](docs/capturas/resultado-perro.png) | ![Resultado cuando la foto es un gato](docs/capturas/resultado-gato.png) |
 
 ---
 
-## 1. Qué decisión apoya
+## ¿Cómo piensa PetVision?
 
-El problema es binario: ante una imagen, decidir si el animal es un perro o un gato.
+El recorrido de una foto, de principio a fin:
 
-PetVision no reemplaza el criterio de la persona. Ordena la evidencia en cuatro pasos:
+```mermaid
+flowchart TD
+    A["Foto o cámara"] --> B["Preparación de la imagen<br/>lienzo 400×400 y gris 100×100"]
+    B --> C["Modelo CNN en el navegador<br/>TensorFlow.js"]
+    C --> D["Probabilidades<br/>perro / gato"]
+    D --> E["Resultado con confianza"]
+```
 
-1. Rechaza fotos que no muestran un perro ni un gato (personas, objetos, escenas vacías).
-2. Calcula una probabilidad con la red neuronal entrenada.
-3. Traduce esa probabilidad a una etiqueta y a un porcentaje de confianza.
-4. Guarda el resultado en el mismo dispositivo para poder revisarlo después.
-
-![Flujo de decisión: foto o cámara, filtro de mascota, red neuronal, confianza y decisión](docs/imagenes/flujo-decision.jpg)
-
-Si la confianza queda por debajo del 60 %, la interfaz avisa que el resultado es poco seguro. Eso evita tratar una estimación débil como si fuera un hecho.
-
----
-
-## 2. Cómo se usa
-
-![Interfaz de PetVision con la foto, los botones de cámara y carga, y la tarjeta de resultado](docs/imagenes/interfaz-html.jpg)
-
-1. Abre la aplicación.
-2. Sube una imagen (JPG, PNG, WEBP o GIF, hasta 12 MB) o enciende la cámara.
-3. Pulsa **Analizar imagen**.
-4. Lee la clase, la confianza y, si quieres, escucha el resultado en voz alta.
-5. Revisa el historial de las últimas detecciones. Se puede borrar en cualquier momento.
-
-La cabecera incluye un interruptor de **tema claro / tema oscuro**; si no eliges ninguno, se respeta el ajuste de tu sistema y, al elegir, la preferencia se recuerda en este dispositivo.
-
-La foto no se envía a un servidor. El historial guarda solo la etiqueta, la confianza y la fecha, dentro del navegador.
+Antes de clasificar, un detector de objetos (COCO-SSD) mira la escena: si no ve un perro ni un gato, la app lo dice y no inventa una respuesta. Si ve una persona y ninguna mascota, también avisa.
 
 ---
 
-## 3. El modelo de inteligencia artificial
+## El modelo
 
-El clasificador que corre en la página es una **red neuronal convolucional** llamada `petvision_classifier`. Se entrenó en el cuaderno `entrenamiento/Clasificador_de_perros_y_gatos.ipynb` y se exportó a TensorFlow.js.
+El clasificador que corre en la página se llama `petvision_classifier`. Es una **red neuronal convolucional** entrenada en el cuaderno `entrenamiento/Clasificador_de_perros_y_gatos.ipynb` y exportada a TensorFlow.js.
 
-![Arquitectura del modelo: imagen 100×100, tres convoluciones, aplanar, capa densa y sigmoide](docs/imagenes/arquitectura-modelo.jpg)
+### Arquitectura
 
-### Datos
-
-| Dato | Valor |
-|---|---|
-| Conjunto | `cats_vs_dogs` de TensorFlow Datasets (fotos de Microsoft / Kaggle) |
-| Imágenes | 23 262 |
-| Tamaño de entrada | 100 × 100 píxeles, un canal en escala de grises |
-| Entrenamiento | 19 700 imágenes |
-| Validación | 3 562 imágenes |
-| Aumento de datos | Giro, desplazamiento, recorte, zoom y volteo horizontal y vertical |
-
-La salida usa **sigmoide**, un número entre 0 y 1:
-
-- cerca de **0** → gato
-- cerca de **1** → perro
-
-En la página, si el valor es 0,5 o menor se muestra **Gato**; si es mayor, **Perro**. La confianza es la probabilidad de la clase elegida.
-
-### Capas
-
-El archivo `web/modelo/model.json` describe esta secuencia:
+Así lo describe `web/modelo/model.json`:
 
 | Capa | Qué hace |
 |---|---|
-| Entrada `100×100×1` | Recibe la foto ya en gris y normalizada entre 0 y 1 |
+| Entrada `100 × 100 × 1` | Recibe la foto en gris, normalizada entre 0 y 1 |
 | Convolución, 32 filtros 3×3, ReLU | Busca bordes y texturas simples |
 | MaxPool 2×2 | Reduce el tamaño y se queda con lo más marcado |
 | Convolución, 64 filtros 3×3, ReLU | Combina esas marcas en formas |
 | MaxPool 2×2 | Vuelve a comprimir |
-| Convolución, 128 filtros 3×3, ReLU | Arma rasgos más específicos del animal |
+| Convolución, 128 filtros 3×3, ReLU | Arma rasgos más propios del animal |
 | MaxPool 2×2 | Última reducción espacial |
 | Aplanar | Convierte el mapa en un vector |
 | Densa, 100 neuronas, ReLU | Relaciona esos rasgos |
 | Densa, 1 neurona, sigmoide | Entrega la probabilidad perro/gato |
 
-Los pesos viven en `web/modelo/group1-shard1of2.bin` y `web/modelo/group1-shard2of2.bin`, al lado de `model.json`.
+La salida es un único número entre 0 y 1: cerca de **0** apunta a **gato** y cerca de **1** apunta a **perro**. En la página, si el valor es 0,5 o menor se muestra **Gato**; si es mayor, **Perro**. La confianza es la probabilidad de la clase elegida.
 
-### Cómo se entrenó
+Los pesos viven en `web/modelo/group1-shard1of2.bin` y `web/modelo/group1-shard2of2.bin`, junto a `model.json`.
 
-En el cuaderno se compararon tres ideas: una red densa, esta red convolucional y una convolucional con dropout. La que se publicó es la convolucional con aumento de datos (`modeloCNN_AD`).
+### Datos y entrenamiento
 
-- Optimizador: Adam
-- Pérdida: entropía cruzada binaria, porque solo hay dos clases
-- Métrica: exactitud
-- Lotes de 32 imágenes
-- 150 épocas sobre las imágenes aumentadas
-- Se guardó como `perros-gatos-cnn-ad.h5` y se convirtió con `tensorflowjs_converter`
+| Dato | Valor |
+|---|---|
+| Conjunto | `cats_vs_dogs` de TensorFlow Datasets (fotos de Microsoft / Kaggle) |
+| Imágenes | 23 262 |
+| Entrada | 100 × 100 píxeles, un canal en escala de grises |
+| Entrenamiento | 19 700 imágenes |
+| Validación | 3 562 imágenes |
+| Aumento de datos | Giro 30°, desplazamiento 0.2, cizalla 15°, zoom 0.7–1.4, volteo horizontal y vertical |
 
-El cuaderno navegable está en la propia aplicación: `web/cuaderno/Clasificador_de_perros_y_gatos.html`.
+En el cuaderno se compararon tres ideas: una red densa, esta red convolucional y una convolucional con dropout. La que se publicó es la convolucional **con aumento de datos** (`modeloCNN_AD`).
 
-### Qué ocurre al pulsar Analizar
+- Optimizador **Adam**, pérdida de **entropía cruzada binaria** y métrica de **exactitud**.
+- Lotes de **32** imágenes y **150 épocas** sobre las imágenes aumentadas.
+- Se guardó como `perros-gatos-cnn-ad.h5` y se convirtió con `tensorflowjs_converter`.
 
-Hay dos modelos, y cumplen papeles distintos.
+El cuaderno navegable está dentro de la propia app: [`web/cuaderno/Clasificador_de_perros_y_gatos.html`](web/cuaderno/Clasificador_de_perros_y_gatos.html).
 
-1. **Filtro.** COCO-SSD con MobileNet v2 mira la imagen a 400×400. Solo sigue adelante si detecta `dog` o `cat` con puntuación de al menos 0,25. Si ve una persona con puntuación de al menos 0,40 y no hay mascota, la foto se rechaza.
-2. **Clasificador propio.** La misma imagen se reduce a 100×100, se pasa a gris con los pesos del cuaderno (`0,114` azul, `0,587` verde, `0,299` rojo) y se divide entre 255. `model.predict` devuelve la sigmoide.
+### Qué ocurre al pulsar «Analizar»
 
-El filtro viene de un CDN la primera vez. El clasificador propio se carga desde `web/modelo/`.
+1. **Filtro.** COCO-SSD con MobileNet v2 revisa la imagen. Solo sigue adelante si detecta `dog` o `cat` con una puntuación de al menos 0,25. Si ve una persona (puntuación ≥ 0,40) y ninguna mascota, la foto se rechaza.
+2. **Clasificador propio.** La imagen se reduce a 100×100, se pasa a gris (pesos `0,114` azul, `0,587` verde, `0,299` rojo) y se divide entre 255. `predict` devuelve la sigmoide y de ahí salen las probabilidades.
 
 ---
 
-## 4. La página HTML
+## Funciones
 
-Todo lo que ve la persona está en `web/`. Es un sitio estático: HTML y un script dentro de `index.html`. No hay servidor de Node.
+- **Sube una foto o usa la cámara.** Acepta JPG, PNG, WEBP o GIF hasta 12 MB; también puedes arrastrar la imagen.
+- **Filtro de mascota.** Antes de clasificar, comprueba que la foto tenga un perro o un gato y descarta personas u objetos.
+- **Clasificación local.** La red corre en tu equipo con TensorFlow.js y muestra las barras de probabilidad.
+- **Nivel de confianza.** Si el resultado es flojo (por debajo del 60 %), te lo advierte en lugar de venderte una certeza.
+- **Tema claro y oscuro.** Hay un interruptor en la cabecera y, si no eliges, se respeta el ajuste de tu sistema. Tu elección se recuerda en el dispositivo.
+- **Instalable y sin conexión.** Se añade como PWA y, tras la primera carga, sigue funcionando offline.
+- **Diseño adaptable.** Pensada para móvil, tableta y escritorio, con menú propio en pantallas pequeñas.
 
-Tailwind se carga en el navegador y lee las clases escritas en el HTML (`bg-cream`, `flex`, `max-w-6xl`, los colores propios y el resto). Así el diseño se aplica sin compilar nada. `styles.css` solo guarda lo que Tailwind no cubre.
+## Privacidad
 
-| Pieza | Función |
-|---|---|
-| `web/index.html` | Pantalla, cámara, carga de foto, clasificación, voz e historial |
-| `web/styles.css` | Detalles propios: píxeles, foco, cámara y títulos en móvil |
-| `web/service-worker.js` | Permite instalar la app y reutilizar archivos sin conexión |
-| `web/manifest.webmanifest` | Nombre, color e icono de la aplicación instalable |
-| `web/assets/` | Logotipo, iconos, favicons e imagen para redes |
-| `web/modelo/` | Topología y pesos del clasificador |
-| `web/cuaderno/` | Explicación navegable del entrenamiento |
+Las imágenes **no salen de tu dispositivo**. El análisis ocurre por completo en el navegador, así que no hay subidas ni cuentas. Las preferencias (tema y si ya viste la bienvenida) se guardan en el almacenamiento local del navegador.
 
-TensorFlow.js y el detector COCO-SSD se piden por CDN. Por eso la **primera** visita necesita internet. Después, el service worker puede guardar esos recursos.
+## Uso sin conexión
 
-La cámara pide permiso al navegador y funciona en `localhost` o con HTTPS. Si no hay cámara, siempre se puede subir una foto.
+La primera visita guarda la aplicación, el modelo y las librerías mediante un *service worker*. A partir de ahí puedes abrir PetVision sin internet y clasificar con normalidad. Si limpias los datos del sitio, la próxima vez necesitarás conexión para volver a llenar la caché.
+
+## Límites conocidos
+
+- Una foto oscura, borrosa o con **varios animales** puede fallar.
+- El filtro previo también se equivoca: a veces deja pasar algo que no es mascota o frena una foto válida.
+- Solo distingue **perros y gatos**; otras especies quedan fuera.
+- La confianza es una **estimación**, no una certeza.
+- El proyecto es **educativo**: apoya una clasificación sencilla, no sirve para un diagnóstico ni para identificar a una mascota concreta.
+
+## Mejoras futuras
+
+- Mostrar un historial visible de las últimas clasificaciones.
+- Ajustar el umbral de confianza según el dispositivo.
+- Añadir más especies o razas.
+- Mejorar el manejo de fotos con varias mascotas.
 
 ---
 
-## 5. Docker
+## Cómo ejecutarlo en local
 
-Docker empaqueta la carpeta `web/` dentro de Nginx. El navegador habla con el puerto **8080**. Nginx entrega el HTML, el modelo y los estilos. No instala Node ni entrena nada.
+### Con Python (sin instalar nada más)
 
-![Nginx dentro de Docker sirve HTML, modelo y estilos al navegador en localhost:8080](docs/imagenes/arquitectura-docker.jpg)
+Desde la carpeta del proyecto:
 
-| Archivo | Función |
-|---|---|
-| `docker/Dockerfile` | Imagen `nginx:1.27-alpine`. Copia `web/` a `/usr/share/nginx/html` |
-| `docker/nginx.conf` | Escucha en el 8080, comprime texto y JSON, y define caché |
-| `compose.yaml` | Construye la imagen y publica `8080:8080` |
-| `.dockerignore` | Deja fuera el cuaderno, las fotos del README y `node_modules` |
+```bash
+python3 -m http.server 8800 --directory web
+```
 
-Nginx añade cabeceras para no mezclar el sitio en un iframe ajeno y para permitir la cámara solo en esta misma página. Los pesos `.bin` se cachean un año porque no cambian. `model.json` se cachea una hora. La página y el service worker no se quedan pegados en caché, para que una actualización se note al recargar.
+Abre [http://localhost:8800](http://localhost:8800). No abras `index.html` con doble clic: la cámara, el modelo y el service worker necesitan una dirección `http://`, no `file://`.
 
-Hay un chequeo de salud: cada 30 segundos Nginx pregunta si la página de inicio responde.
+### Con Docker
 
-### Arrancar
-
-Con [Docker](https://docs.docker.com/get-docker/) instalado, en esta carpeta:
+Con [Docker](https://docs.docker.com/get-docker/) instalado:
 
 ```bash
 docker compose up --build
 ```
 
-Abre [http://localhost:8080](http://localhost:8080).
+Abre [http://localhost:8080](http://localhost:8080). Para detenerlo: `docker compose down`.
 
-Para detenerlo: `docker compose down`.
-
-### Sin Docker
-
-Cualquier servidor estático de la carpeta `web/` sirve. Un ejemplo con Python, sin instalar Node:
-
-```bash
-python -m http.server 8080 --directory web
-```
-
-No abras `index.html` con doble clic. La cámara, el modelo y el service worker necesitan una dirección `http://`, no `file://`.
+Docker solo usa Nginx para servir la carpeta `web/`; no instala Node ni entrena nada. Nginx publica en el puerto 8080, comprime texto y JSON, cachea los pesos `.bin` durante un año y entrega el service worker y el manifest sin caché para que una actualización se note al recargar.
 
 ---
 
-## 6. Carpetas
+## Estructura del proyecto
 
 ```text
-.
+PetVision/
 ├── README.md                 Esta guía
 ├── LICENSE                   Licencia Apache 2.0
-├── .gitignore
 ├── compose.yaml              Arranque con Docker
-├── .dockerignore
-├── docker/
-│   ├── Dockerfile
-│   └── nginx.conf
-├── docs/
-│   ├── imagenes/             Diagramas y capturas de esta documentación
-│   └── capturas/             Capturas de la interfaz (claro/oscuro, escritorio/móvil)
-├── entrenamiento/
-│   └── Clasificador_de_perros_y_gatos.ipynb   Entrenamiento (solo código)
+├── .gitignore                Archivos ignorados por Git
+├── .dockerignore             Archivos que no entran en la imagen
+├── docker/                   Configuración del contenedor
+│   ├── Dockerfile            Imagen nginx:1.27-alpine que sirve web/
+│   └── nginx.conf            Puerto 8080, compresión y cabeceras de caché
+├── docs/                     Documentación
+│   └── capturas/             Capturas de la interfaz
+├── entrenamiento/            Entrenamiento del modelo
+│   └── Clasificador_de_perros_y_gatos.ipynb   Cuaderno de entrenamiento
 └── web/                      Lo que ve el navegador
-    ├── index.html
-    ├── styles.css
-    ├── app.js
-    ├── service-worker.js
-    ├── manifest.webmanifest
-    ├── assets/
-    ├── modelo/
+    ├── index.html            Estructura de la página
+    ├── styles.css            Estilos y variables de tema
+    ├── site.js               Tema, menú, bienvenida y service worker
+    ├── app.js                Cámara, carga de foto y clasificación
+    ├── service-worker.js     Caché para el uso sin conexión
+    ├── manifest.webmanifest  Metadatos de la PWA
+    ├── assets/               Logotipo, iconos, favicons e imagen para redes
+    ├── modelo/               Topología y pesos del clasificador
     │   ├── model.json
     │   ├── group1-shard1of2.bin
     │   └── group1-shard2of2.bin
-    └── cuaderno/
+    └── cuaderno/             Cuaderno navegable del entrenamiento
         └── Clasificador_de_perros_y_gatos.html
 ```
 
 ---
 
-## 7. Límites de la decisión
+## Autoría y licencia
 
-- Una foto oscura, borrosa o con varias mascotas puede fallar.
-- El filtro previo también se equivoca: a veces deja pasar algo que no es mascota, o frena una foto válida.
-- La confianza es una estimación del modelo, no una certeza.
-- El historial permanece solo en ese navegador. Borrar los datos del sitio lo elimina.
-- El proyecto es educativo. Sirve para apoyar una clasificación sencilla, no para un diagnóstico ni para identificar una mascota concreta.
-
----
-
-## 8. Licencia
+**Autor: Rolando Velasco Soliz · Materia: INF432**
 
 Este proyecto se distribuye bajo la [Licencia Apache 2.0](LICENSE). Copyright 2026 Rolando Velasco Soliz.
